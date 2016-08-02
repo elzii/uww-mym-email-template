@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +80,7 @@
           <textarea class="textarea textarea--full" placeholder="" id="txtHTML" name="txtHTML"></textarea>
         </div>
 
-        <input type="hidden" id="txtMsgType" name="txtMsgType" value="team"/>
+        <input type="hidden" id="txtMsgType" name="txtMsgType" value=""/>
 
         <button type="submit" class="btn btn--primary btn--icon btn--submit">
           <i></i>
@@ -114,23 +113,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
 <script>
   (function($){
-
     var $el = {
       presets: $('#presets'),
       preset: $('.preset'),
-
       form: {
-        textarea: $('#txtHTML')
+        textarea: $('#txtHTML'),
+        message_type: $('#txtMsgType')
       }
     };
-
     var messages = [
-      "Hey! \n\nOne of my favorite things about working here is being surrounded by people (like you!) who are passionate about making our community a better place to live, learn, and work. \n\nThat's why I was inspired by this video that United Way//[[LUW]] put together -- itís about how we can make life-changing moments happen for our neighbors. Together, we can fight for the education, health and financial stability of everyone in our community.  Together we can come together to make a real difference. \n\nWatch this video to learn more, and then add your name to join our team in making your moment count!",
-      "Howdy there (work) neighbor! \n\nI just saw this video that United Way/[[LUW]] put together and thought youíd want to check it out, too -- itís about how we can make life-changing moments happen right here in our community. \n\nTogether, with United Way, we can fight for the health, education, and financial stability of everyone in our community.  Letís recruit more of our co-workers to join us and make a real difference! \n\nWatch this video to learn more, and then add your name to join me in making your moment count!",
-      "Hey there, \n\nI appreciate your leadership on creating a culture at this company of giving back to our community. \n\nThat's why I wanted to pass along this video that United Way//[[LUW]] put together -- it shows how our organization can come together to make life-changing moments happen and make a real difference on problems from health and education to financial stability. \n\nPlease watch this video to learn more, and then add your name to lead our office in making moments that matter!",
-      ""
+      {
+        name: "team",
+        text: "Hey! \n\nOne of my favorite things about working here is being surrounded by people (like you!) who are passionate about making our community a better place to live, learn, and work. \n\nThat's why I was inspired by this video that United Way//[[LUW]] put together -- itís about how we can make life-changing moments happen for our neighbors. Together, we can fight for the education, health and financial stability of everyone in our community.  Together we can come together to make a real difference. \n\nWatch this video to learn more, and then add your name to join our team in making your moment count!",
+      },
+      {
+        name: "cubicle",
+        text: "Howdy there (work) neighbor! \n\nI just saw this video that United Way/[[LUW]] put together and thought youíd want to check it out, too -- itís about how we can make life-changing moments happen right here in our community. \n\nTogether, with United Way, we can fight for the health, education, and financial stability of everyone in our community.  Letís recruit more of our co-workers to join us and make a real difference! \n\nWatch this video to learn more, and then add your name to join me in making your moment count!",
+      },
+      {
+        name: "boss",
+        text: "Hey there, \n\nI appreciate your leadership on creating a culture at this company of giving back to our community. \n\nThat's why I wanted to pass along this video that United Way//[[LUW]] put together -- it shows how our organization can come together to make life-changing moments happen and make a real difference on problems from health and education to financial stability. \n\nPlease watch this video to learn more, and then add your name to lead our office in making moments that matter!",
+      },
+      {
+        name: "",
+        text: ""
+      }
     ];
-
     /**
      * Apply Preset
      * 
@@ -138,28 +146,21 @@
      * @param  {Number} i       
      */
     applyPreset = function(element, i) {
-      $el.form.textarea.html( messages[i] );
+      $el.form.textarea.html( messages[i].text );
+      $el.form.message_type.val( messages[i].name );
       $el.presets.find('.preset').removeClass('preset--active')
       element.addClass('preset--active')
     }
-
     // Event binding
     $el.presets.find('.preset').on('click', function (event) {
       event.preventDefault()
-
       var $this = $(this),
           id    = $this.data('preset-id');
-
       applyPreset( $this, id );
-
     })
-
     // Set default
     applyPreset( $el.preset.eq(0), 0 );
-
   })(Zepto);
-
-
 </script>
 
 </body>
