@@ -1,2 +1,6 @@
 # uww-mym-email-template
-HTML/CSS/JS for UWW MYM Marketing Cloud Email Template(s)
+
+
+Modeled from http://pub.s7.exacttarget.com/drtvz3o5igv
+
+The form post action, as well as ID and name attributes were left intact
